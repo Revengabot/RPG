@@ -1,7 +1,7 @@
-class Main {
+  class Main {
 	
 	
-	//heyyyyyyyyyyyyyyyyyyy
+	//deadddd
 	public static void main(String[] args) {
 		
 		System.out.println("Hello");

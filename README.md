@@ -1,2 +1,2 @@
 # RPG
-Video game with storyline
+Video game made with Java swing and JavaFx.

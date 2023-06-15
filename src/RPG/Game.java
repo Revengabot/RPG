@@ -1,5 +1,6 @@
 package RPG;
 import extra.ConsoleColors;
+import masdododod.Main;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,24 +8,38 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+
+
 public class Game {
-
-
-
+	//player declaration as global variable
+	public static Player player = new Player("playerName");
   // indexEnemy
   private static int enemyNameIndex = 0;
   private static int enemyHealth = 75;
   private static int enemyAttack = 20;
   private static Scanner scanner = new Scanner(System.in);
+  //public static ArrayList<Product> storeInventory = new ArrayList<Product>();
 
   public static void main(String[] args) {
+	  
+//	  JFrame frame = new JFrame("FrameDemo");
+//	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//	  frame.setResizable(false);
+//		frame.setTitle("RPG GAME");
+//		frame.pack();
+//		frame.setIconImage(new ImageIcon("gamegame/Slordge.png").getImage());
+//		JFrame.setDefaultLookAndFeelDecorated(true);
+//		frame.setVisible(true);
+	  
+		Main.main(args);
+		Store.main(args);
 
     // take player name input and introduce player to game
     System.out.println(ConsoleColors.CYAN_BOLD +"Welcome to this RPG!" + ConsoleColors.RESET);
     System.out.println("What is your name?");
     String playerName = scanner.nextLine();
+    player.setName(playerName);
     
-    Player player = new Player(playerName);
   
     
     System.out.println("Welcome " + ConsoleColors.YELLOW_BOLD + player.getName() + ConsoleColors.RESET+"!");
@@ -64,6 +79,7 @@ public class Game {
     	
       Enemy enemy = new Enemy(enemyGenName(), 0, 0, 0, 0);
       Encounter encounter = new Encounter(player, enemy);
+      
       enemyNameIndex++;
       enemyAttack= (int)(enemyAttack + (Math.random()*13));
       enemyHealth = (int)(enemyHealth + (Math.random()*50));
@@ -81,14 +97,6 @@ public class Game {
       enemy.setHP(enemyHealth);
       enemy.setAttack(enemyAttack);
       
-      
-      
-     
-      // Sarah's note: we need to add the leveling system to increase health and
-      // attack and to add player death game over and end of game and thats pretty
-      // much it
-    
-
       while (enemy.getHP()>0) {
 
         // keep printing out options if enemy is alive
@@ -117,10 +125,6 @@ public class Game {
     }//end of player attack an defend choices
       } // end of while
       
-    
-     
-  
-   
     if(player.getHP()<=0) {
   	  System.out.println("You DIED");
   	  System.out.println("Highscore is " + player.getCoin() +" coins!");
@@ -132,12 +136,13 @@ public class Game {
     scanner.close();
   }// end of main method
 
+
+  //Load in Enemy names from text file
   private static ArrayList<String> name;
 
   private static String enemyGenName() {
     name = loadStringList("enemyName.txt");
     return name.get(enemyNameIndex);
-    // this.name = new ArrayList<Enemy>();
   }
 
   private static ArrayList<String> loadStringList(String filename) {

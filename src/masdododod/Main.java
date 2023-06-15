@@ -7,7 +7,7 @@ import java.awt.Window;
 import javax.swing.ImageIcon;
 
 
-public class main {
+public class Main {
 	
 	public static JFrame window;
 

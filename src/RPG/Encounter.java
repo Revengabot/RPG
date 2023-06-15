@@ -1,8 +1,5 @@
 package RPG;
 
-
-
-
 public class Encounter {
 	
 	private Player player;
@@ -58,6 +55,10 @@ public class Encounter {
     	player.setCoin( enemy.getCoin() + player.getCoin());
       System.out.println(player.getName()+ " has " + player.getCoin() + " coins");
       enemy.setCoin(enemy.getCoin());
+	  
+		Store.storeRun();
+		
+
 
        
 

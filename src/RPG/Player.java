@@ -22,7 +22,6 @@ public class Player extends Character {
 	private  Double damage = 0.0;
 	
 	
-	
 
 	public Player(String name) {
 		super(name, 50, 200, 0);
@@ -42,23 +41,4 @@ public class Player extends Character {
 		
 	}
 
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-	
-	
-
-	
-	
 }

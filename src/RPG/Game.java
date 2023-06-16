@@ -4,6 +4,10 @@ import masdododod.Main;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,57 +21,74 @@ public class Game {
   private static int enemyNameIndex = 0;
   private static int enemyHealth = 75;
   private static int enemyAttack = 20;
+  //scanner
   private static Scanner scanner = new Scanner(System.in);
-  //public static ArrayList<Product> storeInventory = new ArrayList<Product>();
 
   public static void main(String[] args) {
 	  
-//	  JFrame frame = new JFrame("FrameDemo");
-//	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//	  frame.setResizable(false);
-//		frame.setTitle("RPG GAME");
-//		frame.pack();
-//		frame.setIconImage(new ImageIcon("gamegame/Slordge.png").getImage());
-//		JFrame.setDefaultLookAndFeelDecorated(true);
-//		frame.setVisible(true);
-	  
-		Main.main(args);
+		//ensure Store arraylist of products are functional
 		Store.main(args);
+
+		
+		
+		
 
     // take player name input and introduce player to game
     System.out.println(ConsoleColors.CYAN_BOLD +"Welcome to this RPG!" + ConsoleColors.RESET);
     System.out.println("What is your name?");
     String playerName = scanner.nextLine();
+    //set player name
     player.setName(playerName);
     
-  
-    
+    //welcome player
     System.out.println("Welcome " + ConsoleColors.YELLOW_BOLD + player.getName() + ConsoleColors.RESET+"!");
     
     //Ask user what class they want to choose
-    System.out.println("What class do you want?" + ConsoleColors.BLUE_BOLD + "\n\tMage" + ConsoleColors.RESET + "(More attack but low HP)\n\t"+ ConsoleColors.GREEN_BOLD +"Bard"+ConsoleColors.RESET +  " (Balanced HP and attack"+ConsoleColors.MAGENTA +"\n\tSwordsmen"+ ConsoleColors.RESET + "(More HP but lower attack)");
-//  }   
-  //user input decides on class 
-  //user chooses mage
+    //(Each avatar has a different set of starting stats)
+    System.out.println("What avatar do you want?" + ConsoleColors.BLUE_BOLD + "\n\tSludge" + ConsoleColors.RESET + "(More attack but low HP)\n\t"
+    + ConsoleColors.GREEN_BOLD +"Mushroom"+ConsoleColors.RESET +  " (Balanced HP and attack)"
+    + ConsoleColors.MAGENTA +"\n\tGhost"+ ConsoleColors.RESET
+    + "(More HP but lower attack)" + "\n\tGoomba" + "(Higher HP and slighlty higher Attack)");
+ 
+  //--Proccesssing user's avatar input--//
+
+  //user chooses Sludge
     String classChoice = scanner.nextLine();
-  if(classChoice.equalsIgnoreCase("Mage")) {
+  if(classChoice.equalsIgnoreCase("Sludge")) {
 	  player.setAttack(100);
 	  player.setHP(100);
+	  Main.slime();
+	  
 
 
-    //user chooses Bard
-  }else if(classChoice.equalsIgnoreCase("Bard")){
+    //user chooses Ghost
+  }else if(classChoice.equalsIgnoreCase("Ghost")){
 	  player.setAttack(50);
 	  player.setHP(200);
+	  Main.ghost();
+	  
 
 	  
-    //user chooss Swordsmen
-  }else if(classChoice.equalsIgnoreCase("Swordsmen")){
+    //user chooss Mushroom
+  }else if(classChoice.equalsIgnoreCase("Mushroom")){
 	  player.setAttack(31);
 	  player.setHP(450);
+	  Main.mushroom();
+	  
+	  
 
 	  
-  }else {
+  }
+  //user chooses Goomba
+  else if(classChoice.equalsIgnoreCase("Goomba")){
+	  player.setAttack(80);
+	  player.setHP(500);
+	  Main.goomba();
+
+	  
+  }
+  //Playe
+  else {
 	  System.out.println("NOT A VALID CHOICE");
   }//end of user class choice proccesing 
 
@@ -93,7 +114,7 @@ public class Game {
       }
       
      // enemy.ememy  
-      enemy.setCoin(5);
+      enemy.setCoin((int)(Math.random()*10));
       enemy.setHP(enemyHealth);
       enemy.setAttack(enemyAttack);
       

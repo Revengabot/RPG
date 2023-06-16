@@ -1,7 +1,8 @@
 package RPG;
+import java.util.Scanner;
 
 public class Encounter {
-	
+	private static Scanner scan = new Scanner(System.in);
 	private Player player;
 	private Enemy enemy;
 	private boolean active;
@@ -56,7 +57,22 @@ public class Encounter {
       System.out.println(player.getName()+ " has " + player.getCoin() + " coins");
       enemy.setCoin(enemy.getCoin());
 	  
-		Store.storeRun();
+		//------Ask User if they want to enter store------//
+	  System.out.println("Would you like to enter the store?");
+    String enterStore = scan.nextLine();
+      if (enterStore.equals("yes")) {
+        Store.sheshon = true;
+        Store.storeRun();
+    		player.setHP(player.getHP() + Store.storeInventory.get(Store.searchProductResult).getHealth());
+        //attack bonus
+        player.setAttack(player.getAttack() + Store.storeInventory.get(Store.searchProductResult).getAttackBoost());
+        //new number of coins after purchase
+       player.setCoin(player.getCoin() - Store.storeInventory.get(Store.searchProductResult).getPrice());
+      //print out players new stats
+	  System.out.println();
+	  } else if (enterStore.equals("no")) {
+        Store.sheshon = false;
+      }//end of store
 		
 
 
